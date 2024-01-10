@@ -1,4 +1,12 @@
-# HTMX Example Project
+# Templ of Horse Lasers HTMX Example
+
+- [HTMX](https://htmx.org/)
+- [Hyperscript](https://hyperscript.org/)
+- [Templ](https://templ.guide)
+- [Tailwind](https://tailwindcss.com/)
+- [GORM](https://gorm.io/)
+- [SQLite](https://gorm.io/docs/connecting_to_the_database.html#SQLite)
+- [Air](https://github.com/cosmtrek/air)
 
 [HTMX](https://htmx.org/) and [Hyperscript](https://hyperscript.org/) libraries are stored locally in the `.dist` folder.
 
@@ -11,7 +19,7 @@
 
 ### Frontend
 
-When the server is running, the GO Echo endpoints will return the appropriate HTML. No separate frontend repo or client app is required.
+When the server is running, the GO Echo endpoints will return the entire HTML document. HTMX attributes will request and update portions of the document. No separate frontend repo or client app is required.
 
 ### TEMPL: HTML Templating Engine
 
