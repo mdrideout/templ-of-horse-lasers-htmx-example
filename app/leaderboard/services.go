@@ -7,7 +7,6 @@ import (
 	"main/db"
 	"main/template"
 	"net/http"
-	"sort"
 
 	"github.com/labstack/echo/v4"
 )
@@ -24,11 +23,6 @@ func LeaderboardService(c echo.Context) error {
 		log.Println(err)
 		return err
 	}
-
-	// Sort the items
-	sort.Slice(items, func(i, j int) bool {
-		return items[i].Score > items[j].Score
-	})
 
 	// Get the component
 	component := Leaderboard(title, items)
