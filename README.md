@@ -1,5 +1,11 @@
 # Templ of Horse Lasers HTMX Example
 
+A GO based HTMX example library.
+
+<img src="./laser-horse.png" height="300px"/>
+
+### Stack
+
 - [HTMX](https://htmx.org/)
 - [Hyperscript](https://hyperscript.org/)
 - [Templ](https://templ.guide)
