@@ -1,0 +1,80 @@
+package index
+
+import (
+	"main/app/base"
+	"main/app/index/components"
+)
+
+templ Index(name string) {
+	@base.DocType()
+	@base.Head("HTMX Example")
+	@base.Body(pageIndex(name))
+}
+
+templ pageIndex(name string) {
+	<div class="p-2">
+		<p class="font-bold">Name Change Example</p>
+		<p class="mb-2">Change the name through various state management techniques using HTMX attributes.</p>
+		<div class="mb-5" id="name-display-global">
+			@components.YourNameIsGlobal()
+		</div>
+		<div class="mb-5" id="name-display">
+			@components.YourNameIs(name)
+		</div>
+		// Change via URL parameter (server reads URL parameter and returns to client)
+		<div class="mb-8">
+			<p class="font-bold">Change name via URL parameter state</p>
+			<p class="text-sm text-gray-600">No HTMX, reloads entire page</p>
+			<form class="my-2" action="/" method="GET">
+				<input type="text" name="name" placeholder="Your name" class="border rounded px-2 py-1"/>
+				<input type="submit" value="Submit" class="border rounded px-2 py-1"/>
+			</form>
+		</div>
+		// Change name via HTMX Update (hx-post only updates the target div)
+		<div class="mb-8">
+			<p class="font-bold">Change name via HTMX hx-get + hx-target</p>
+			<p class="text-sm text-gray-600 italic">Overrides URL parameter</p>
+			<p class="text-sm text-gray-600">
+				Only updates the targeted div <span class="text-sky-700">id="name-display"</span>
+				<br/>
+				Fetches the updated templ html component from the server and injects the GET form values into it.
+			</p>
+			<form class="my-2" hx-get="/index/your-name-is" hx-target="#name-display">
+				<input type="text" name="name" placeholder="Your name" class="border rounded px-2 py-1"/>
+				<input type="submit" value="Submit" class="border rounded px-2 py-1"/>
+			</form>
+		</div>
+		// Change name via Hyperscript (change exists on client side only)
+		<div class="mb-8">
+			<p class="font-bold">Change name via client state (Hyperscript)</p>
+			<p class="text-sm text-gray-600">
+				Only updates the targeted div <span class="text-sky-700">id="name-display"</span>
+				<br/>
+				Uses <a class="underline" href="https://hyperscript.org" target="_blank">Hyperscript</a> to update the name on the client-side only. No server interaction.
+				<br/>
+				This is best used for purely UX updates (like toggling element visibility).
+			</p>
+			<form class="my-2" _="on submit halt the event then put 'Hyperscript name: ' + event.target.elements.name.value into #name-display">
+				<input type="text" name="name" placeholder="Your name" class="border rounded px-2 py-1"/>
+				<input type="submit" value="Submit" class="border rounded px-2 py-1"/>
+			</form>
+		</div>
+		// Change global server state (client submits form and server saves value to global state - change reflects for all clients)
+		<div class="mb-8">
+			<p class="font-bold">Change global server state (hx-post + hx-target)</p>
+			<p class="text-sm text-gray-600">
+				Only updates the targeted div <span class="text-sky-700">id="name-display-global"</span>
+				<br/>
+				Update's the server's global "name" state.
+				<br/>
+				Fetches the updated templ html component from the server which uses the server global state.
+				<br/>
+				If you open a new tab, you will see the same name.
+			</p>
+			<form class="my-2" hx-post="/index/new-global-name" hx-target="#name-display-global">
+				<input type="text" name="name" placeholder="Global name" class="border rounded px-2 py-1"/>
+				<input type="submit" value="Submit" class="border rounded px-2 py-1"/>
+			</form>
+		</div>
+	</div>
+}

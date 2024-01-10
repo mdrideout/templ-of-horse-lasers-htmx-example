@@ -1,0 +1,13 @@
+package components
+
+// Global name variable for example
+var GlobalName string = ""
+
+// Similar to YourNameIs, but uses the server's global name variable.
+templ YourNameIsGlobal() {
+	if GlobalName == "" {
+		<p class="mb-5">Global name is empty</p>
+	} else {
+		<p>Global name is <span class="font-bold">{ GlobalName }</span></p>
+	}
+}

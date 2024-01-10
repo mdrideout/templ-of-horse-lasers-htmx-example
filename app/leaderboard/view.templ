@@ -1,0 +1,25 @@
+package leaderboard
+
+import (
+	"main/app/base"
+	"main/app/leaderboard/components"
+
+	"main/app/leaderboard/models"
+)
+
+templ Leaderboard (title string, items []models.LeaderboardItemStore) {
+	@base.DocType()
+	@base.Head("Leaderboard")
+	@base.Body(pageLeaderboard(title, items))
+}
+
+templ pageLeaderboard(title string, items []models.LeaderboardItemStore) {
+	<div class="p-2">
+		<p class="font-bold">Leaderboard Example</p>
+		<p class="mb-2">Submit leaderboard entries to the SQLite database using HTMX calls.</p>
+		@components.LeaderboardForm()
+		<br/>
+		<br/>
+		@components.LeaderboardTable(items)
+	</div>
+}

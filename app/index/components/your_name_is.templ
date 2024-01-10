@@ -1,0 +1,9 @@
+package components
+
+templ YourNameIs(name string) {
+	if name == "" {
+		<p class="mb-5">What is your name?</p>
+	} else {
+		<p>Your name is <span class="font-bold">{ name }</span></p>
+	}
+}

@@ -1,0 +1,14 @@
+package components
+
+templ LeaderboardForm() {
+	<div>
+		<p class="font-bold">Add entry</p>
+		<form hx-post="/leaderboard/add" hx-target="#leaderboard-table" hx-boost="true">
+			<div class="flex flex-wrap gap-x-2 gap-y-2 mb-2">
+				<input type="text" name="name" placeholder="Name" class="border px-1" required/>
+				<input type="number" name="score" placeholder="Score" class="border px-1" required/>
+				<button class="border rounded px-2 py-1">+</button>
+			</div>
+		</form>
+	</div>
+}

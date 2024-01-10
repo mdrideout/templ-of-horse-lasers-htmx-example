@@ -1,0 +1,23 @@
+package components
+
+import (
+	"fmt"
+
+	"main/app/leaderboard/models"
+)
+
+templ LeaderboardTable(items []models.LeaderboardItemStore) {
+	// Render the table
+	<table id="leaderboard-table">
+		<tr>
+			<th>NAME</th>
+			<th>SCORE</th>
+		</tr>
+		for _, item := range items {
+			<tr>
+				<td class="p-2 border">{ item.Name }</td>
+				<td class="p-2 border">{ fmt.Sprint(item.Score) }</td>
+			</tr>
+		}
+	</table>
+}
