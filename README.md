@@ -1,6 +1,6 @@
 # Templ of Horse Lasers HTMX Example
 
-A GO based HTMX example library.
+A GO based HTMX example library. See how different types of server and client state updates can happen with HTMX and Hyperscript.
 
 <img src="./laser-horse.png" height="300px"/>
 
